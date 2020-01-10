@@ -16,6 +16,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
+import PeopleTwoToneIcon from '@material-ui/icons/PeopleTwoTone';
 
 const useStyles = makeStyles({
   list: {
@@ -53,20 +54,20 @@ export default function MenuDrawer() {
       <List>
         <a href="http://faculty.washington.edu/lbuckley/" target="_blank">
         <ListItem button key='Our lab' >
-          <ListItemIcon><InfoTwoToneIcon /> </ListItemIcon>
+          <ListItemIcon><PeopleTwoToneIcon /> </ListItemIcon>
           <ListItemText primary={'About us'} />
+        </ListItem>
+        </a>
+
+        <a href="https://github.com/HuckleyLab/mhw_stressviz" target="_blank">
+        <ListItem button key='About the project' >
+          <ListItemIcon><InfoTwoToneIcon /> </ListItemIcon>
+          <ListItemText primary={'About the project'} />
         </ListItem>
         </a>
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      
     </div>
   );
 

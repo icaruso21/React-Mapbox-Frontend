@@ -19,7 +19,7 @@ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import AppBar from '@material-ui/core/AppBar';
 import Map from 'components/Map';
 import styled from 'styled-components';
-import InfoPane from 'components/InfoPane';
+import InfoDrawer from 'components/InfoDrawer';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MenuDrawer from 'components/MenuDrawer';
 
@@ -85,10 +85,10 @@ class App extends React.Component{
 
 
                 <Typography variant="h6" className={NavBar.title}>
-                  HeatStress
+                  <a href="http://localhost:3000/">HeatStress</a>
                 </Typography>
 
-                <Button color="inherit">Login</Button>
+
 
                 <IconButton edge="start" className={NavBar.menuButton} color="inherit" aria-label="menu">
                   <ArrowLeftIcon fontSize="large" style={{align:'right'}}/>
@@ -98,12 +98,12 @@ class App extends React.Component{
           </Grid>
         </StyledGrid>
         <StyledGrid container>
-          <Grid item xs={8}>
+          <Grid item xs={11}>
           <Map mapMoveHandler={this.updateLocationState}/>
           </Grid>
-          <Grid item xs={4}>
-            <InfoPane lat={this.state.latitude} lon={this.state.longitude} zm={this.state.zoom} >
-            </InfoPane>
+          <Grid item xs={1}>
+            <InfoDrawer lat={this.state.latitude} lon={this.state.longitude} zm={this.state.zoom} >
+            </InfoDrawer>
           </Grid>
         </StyledGrid>
       </MainContainer>
