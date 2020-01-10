@@ -18,6 +18,10 @@ const MapContainer = styled.div`
   width: 100%;
   `;
 
+  const countries = styled.div`
+    position: absolute;
+    `;
+
   const options = [{
     name: 'Population',
     description: 'Estimated total population',
@@ -89,7 +93,6 @@ class Map extends React.Component{
     //Add zoom & compass buttons to the map
     var nav = new mapboxgl.NavigationControl();
     this.map.addControl(nav, 'bottom-right');
-
 
     this.map.on('mousemove',(e) => {
       console.log(e.lngLat.wrap());

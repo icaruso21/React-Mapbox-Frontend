@@ -20,6 +20,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Map from 'components/Map';
 import styled from 'styled-components';
 import InfoPane from 'components/InfoPane';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import MenuDrawer from 'components/MenuDrawer';
+
 
 const MainContainer = styled.div`
   min-height: 100%;
@@ -77,9 +80,9 @@ class App extends React.Component{
           <AppBar position="sticky" style={{ background: 'transparent', boxShadow: 'none'}}>
               <Toolbar>
 
-                <IconButton edge="start" className={NavBar.menuButton} color="inherit" aria-label="menu">
-                  <MenuIcon />
-                </IconButton>
+                  <MenuDrawer />
+
+
 
                 <Typography variant="h6" className={NavBar.title}>
                   HeatStress
