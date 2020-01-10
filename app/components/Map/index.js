@@ -145,8 +145,8 @@ class Map extends React.Component{
 
     return(
         <MapContainer id="map">
-          <div ref={el => this.mapContainer = el} className="absolute top right left bottom" />
-          <div className="toggle-group absolute top left ml12 mt12 border border--2 border--white bg-white shadow-darken10 z1">
+        <div ref={el => this.mapContainer = el} className="absolute top right left bottom" />
+          <div className="toggle-group absolute bottom left ml12 mb30 border border--2 border--white bg-white shadow-darken10 z1">
             {options.map(renderOptions)}
           </div>
           <div className="bg-white absolute bottom right mr12 mb24 py12 px12 shadow-darken10 round z1 wmax180">
