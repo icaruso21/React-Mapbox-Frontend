@@ -23,7 +23,7 @@ const MapContainer = styled.div`
     `;
 
   const options = [{
-    name: 'Population',
+    name: 'Sea Surface Temperature',
     description: 'Estimated total population',
     property: 'pop_est',
     stops: [
@@ -38,7 +38,7 @@ const MapContainer = styled.div`
       [1000000000, '#6e40e6']
     ]
   }, {
-    name: 'GDP',
+    name: 'Thermal Stress',
     description: 'Estimate total GDP in millions of dollars',
     property: 'gdp_md_est',
     stops: [
@@ -76,7 +76,7 @@ class Map extends React.Component{
       style: 'mapbox://styles/mapbox/streets-v9',
     });
 
-    //Load and add countries layer
+    //Load and add 'countries' layer
     this.map.on('load', () => {
       this.map.addSource('countries', {
         type: 'geojson',
@@ -94,6 +94,7 @@ class Map extends React.Component{
     var nav = new mapboxgl.NavigationControl();
     this.map.addControl(nav, 'bottom-right');
 
+    //Handles updating pointer location and current zoom level
     this.map.on('mousemove',(e) => {
       console.log(e.lngLat.wrap());
       this.setState({
@@ -117,14 +118,14 @@ class Map extends React.Component{
     });
   }
 
+  //Sets fill for 'countries' layer
   setFill() {
-    const { property, stops } = this.state.active;
-    this.map.setPaintProperty('countries', 'fill-color', {
-      property,
-      stops
-    });
-  }
-
+      const { property, stops } = this.state.active;
+      this.map.setPaintProperty('countries', 'fill-color', {
+        property,
+        stops
+      });
+    }
 
   render(){
     const { name, description, stops, property } = this.state.active;

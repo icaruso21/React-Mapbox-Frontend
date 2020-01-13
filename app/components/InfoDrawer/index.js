@@ -20,8 +20,16 @@
  import ListItem from '@material-ui/core/ListItem';
  import ListItemIcon from '@material-ui/core/ListItemIcon';
  import ListItemText from '@material-ui/core/ListItemText';
- import InboxIcon from '@material-ui/icons/MoveToInbox';
- import MailIcon from '@material-ui/icons/Mail';
+ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+ import ListSubheader from '@material-ui/core/ListSubheader';
+ import Collapse from '@material-ui/core/Collapse';
+ import ExpandLess from '@material-ui/icons/ExpandLess';
+ import ExpandMore from '@material-ui/icons/ExpandMore';
+ import Switch from '@material-ui/core/Switch';
+ import WifiIcon from '@material-ui/icons/Wifi';
+ import BluetoothIcon from '@material-ui/icons/Bluetooth';
+ import LayersIcon from '@material-ui/icons/Layers';
 
  const drawerWidth = 240;
 
@@ -86,18 +94,38 @@
    const theme = useTheme();
    const [open, setOpen] = React.useState(false);
 
+   //Handle opening and closing drawers
    const handleDrawerOpen = () => {
      setOpen(true);
    };
-
    const handleDrawerClose = () => {
      setOpen(false);
    };
 
+   //Handle opening and closing nested list
+  const [openInfo, setOpenInfo] = React.useState(false);
+  const handleClick = () => {
+    setOpenInfo(!openInfo);
+  };
+
+  //Handles layer toggles
+  const [checked, setChecked] = React.useState(['seafloor']);
+  const handleToggle = value => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+  };
+
    return (
      <div className={classes.root}>
        <CssBaseline />
-
            <IconButton
              color="inherit"
              aria-label="open drawer"
@@ -105,7 +133,7 @@
              onClick={handleDrawerOpen}
              className={clsx(open && classes.hide)}
            >
-             <MenuIcon />
+             <ChevronLeftIcon fontSize="large" style={{align:'right'}}/>
            </IconButton>
 
        <main
@@ -114,8 +142,8 @@
          })}
        >
          <div className={classes.drawerHeader} />
-         
        </main>
+
        <Drawer
          className={classes.drawer}
          variant="persistent"
@@ -142,9 +170,68 @@
              <p> Zoom: {props.zm} </p>
            </ListItem>
 
-         </List>
-         <Divider />
+           <Divider />
 
+           <ListItem button onClick={handleClick}>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary="Toggle Layers" />
+              {openInfo ? <ExpandLess /> : <ExpandMore />}
+           </ListItem>
+           <Collapse in={openInfo} timeout="auto" unmountOnExit>
+             <List component="div" disablePadding>
+               <ListItem>
+                <ListItemText id="switch-list-label-seafloor" primary="Seafloor" />
+                <ListItemSecondaryAction>
+                  <Switch
+                    edge="end"
+                    onChange={handleToggle('seafloor')}
+                    checked={checked.indexOf('seafloor') !== -1}
+                    inputProps={{ 'aria-labelledby': 'switch-list-label-seafloor' }}
+                  />
+                </ListItemSecondaryAction>
+              </ListItem>
+
+              <ListItem>
+               <ListItemText id="switch-list-label-ecozone" primary="Economic Zones" />
+               <ListItemSecondaryAction>
+                 <Switch
+                   edge="end"
+                   onChange={handleToggle('ecozone')}
+                   checked={checked.indexOf('ecozone') !== -1}
+                   inputProps={{ 'aria-labelledby': 'switch-list-label-ecozone' }}
+                 />
+               </ListItemSecondaryAction>
+             </ListItem>
+
+              <ListItem>
+               <ListItemText id="switch-list-label-currents" primary="Currents" />
+               <ListItemSecondaryAction>
+                 <Switch
+                   edge="end"
+                   onChange={handleToggle('currents')}
+                   checked={checked.indexOf('currents') !== -1}
+                   inputProps={{ 'aria-labelledby': 'switch-list-label-currents' }}
+                 />
+               </ListItemSecondaryAction>
+             </ListItem>
+
+             <ListItem>
+              <ListItemText id="switch-list-label-wind" primary="Wind" />
+              <ListItemSecondaryAction>
+                <Switch
+                  edge="end"
+                  onChange={handleToggle('wind')}
+                  checked={checked.indexOf('wind') !== -1}
+                  inputProps={{ 'aria-labelledby': 'switch-list-label-wind' }}
+                />
+              </ListItemSecondaryAction>
+            </ListItem>
+           </List>
+          </Collapse>
+         </List>
+        <Divider />
        </Drawer>
      </div>
    );
