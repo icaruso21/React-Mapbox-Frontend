@@ -22,6 +22,7 @@ const MapContainer = styled.div`
     position: absolute;
     `;
 
+  //Input for layer paint toggle
   const options = [{
     name: 'Sea Surface Temperature',
     description: 'Estimated total population',
@@ -86,7 +87,7 @@ class Map extends React.Component{
         id: 'countries',
         type: 'fill',
         source: 'countries'
-      }, 'country-label-lg'); // ID metches `mapbox/streets-v9`
+      }, 'country-label-lg');
       this.setFill();
     });
 
@@ -128,6 +129,8 @@ class Map extends React.Component{
     }
 
   render(){
+
+    //consts for layer paint toggle
     const { name, description, stops, property } = this.state.active;
     const renderLegendKeys = (stop, i) => {
       return (

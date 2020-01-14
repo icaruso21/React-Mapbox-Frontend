@@ -22,6 +22,7 @@ import styled from 'styled-components';
 import InfoDrawer from 'components/InfoDrawer';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MenuDrawer from 'components/MenuDrawer';
+import Species from 'components/Species';
 
 //Styles for MainContainer
 const MainContainer = styled.div`
@@ -63,7 +64,12 @@ class App extends React.Component{
       longitude: 0,
       zoom: 0,
       isOpen: false,
+      fish: "Brook Trout",
+      sciName: "Salvelinus fontinalis",
+      tags: ["Threatened"],
+      stressAge: "15",
     };
+    //this.updateFishState = this.updateFishState.bind(this);
     this.updateLocationState = this.updateLocationState.bind(this);
   }
 
@@ -77,16 +83,24 @@ class App extends React.Component{
     })
   }
 
+  updateFishState(){
+    this.setState({
+      fish: "Brook Trout",
+    })
+  }
+
+
+
   render(){
     return (
       <MainContainer>
         <StyledGrid container>
           <Grid item xs={12}>
-            <AppBar position="sticky" style={{ background: 'transparent', boxShadow: 'none'}}>
-              <Toolbar>
+            <AppBar position="sticky" style={{  background: 'transparent', boxShadow: 'none'}}>
+              <Toolbar style={{height: "50px"}}>
                 <MenuDrawer />
                 <Typography variant="h6" style={{ flex: '1'}} className={NavBar.title}>
-                  <a href="http://localhost:3000/">HeatStress</a>
+                  <a href="/">HeatStress</a>
                 </Typography>
                 <InfoDrawer lat={this.state.latitude} lon={this.state.longitude} zm={this.state.zoom} />
               </Toolbar>
@@ -94,7 +108,10 @@ class App extends React.Component{
           </Grid>
         </StyledGrid>
         <StyledGrid container>
-          <Grid item xs={12}>
+          <Grid item xs={3}>
+            <Species fish={this.state.fish} sciName={this.state.sciName} tags={this.state.tags} stressAge={this.state.stressAge}/>
+          </Grid>
+          <Grid item xs={9}>
             <Map mapMoveHandler={this.updateLocationState}/>
           </Grid>
         </StyledGrid>

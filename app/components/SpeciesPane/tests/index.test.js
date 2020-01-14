@@ -1,6 +1,6 @@
 /**
  *
- * Tests for InfoPane
+ * Tests for SpeciesPane
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,12 +10,12 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import InfoPane from '../index';
+import SpeciesPane from '../index';
 
-describe('<InfoPane />', () => {
+describe('<SpeciesPane />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<InfoPane />);
+    render(<SpeciesPane />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +31,7 @@ describe('<InfoPane />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<InfoPane />);
+    } = render(<SpeciesPane />);
     expect(firstChild).toMatchSnapshot();
   });
 });

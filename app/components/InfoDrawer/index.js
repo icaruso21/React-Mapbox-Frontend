@@ -33,6 +33,7 @@
 
  const drawerWidth = 240;
 
+ //Styles for drawer
  const useStyles = makeStyles(theme => ({
    root: {
      display: 'flex',
@@ -127,6 +128,7 @@
      <div className={classes.root}>
        <CssBaseline />
            <IconButton
+             // style={{height: "100%"}}
              color="inherit"
              aria-label="open drawer"
              edge="end"
